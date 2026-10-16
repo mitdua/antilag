@@ -1,0 +1,23 @@
+[Unit]
+Description=antilag: servidor del tunel multi-enlace (varios jugadores)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/opt/antilag/bin/antilag serve --listen 0.0.0.0:51888 --clients /etc/antilag/clients.json
+# 'systemctl reload antilag' re-reads the players without dropping anyone.
+ExecReload=/bin/kill -HUP $MAINPID
+# /run/antilag/status.json: who is online, for 'antilag clients list'.
+RuntimeDirectory=antilag
+Restart=always
+RestartSec=2
+# Only what is needed to create and configure the TUN.
+AmbientCapabilities=CAP_NET_ADMIN
+CapabilityBoundingSet=CAP_NET_ADMIN
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

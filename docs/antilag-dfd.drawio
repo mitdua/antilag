@@ -1,0 +1,127 @@
+<mxfile host="antilag">
+  <diagram id="dfd" name="DFD antilag">
+    <mxGraphModel dx="1480" dy="800" grid="1" gridSize="10" page="1" pageWidth="1480" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="lanePC" value="PC del jugador (Windows)" style="swimlane;startSize=30;fillColor=#f8f9fb;strokeColor=#9aa4b5;fontStyle=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="660" height="770" as="geometry"/>
+        </mxCell>
+        <mxCell id="laneNet" value="Salidas a internet" style="swimlane;startSize=30;fillColor=#f8f9fb;strokeColor=#9aa4b5;fontStyle=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="20" width="170" height="770" as="geometry"/>
+        </mxCell>
+        <mxCell id="laneVPS" value="VPS (Linux, EE. UU.)" style="swimlane;startSize=30;fillColor=#f8f9fb;strokeColor=#9aa4b5;fontStyle=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="20" width="350" height="770" as="geometry"/>
+        </mxCell>
+        <mxCell id="laneTibia" value="Tibia (CipSoft)" style="swimlane;startSize=30;fillColor=#f8f9fb;strokeColor=#9aa4b5;fontStyle=1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="20" width="220" height="770" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="E1" value="&lt;b&gt;Jugador&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="P1" value="&lt;b&gt;1. Capturar&lt;br&gt;IPs del mundo&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="30" y="250" width="160" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="E2" value="&lt;b&gt;Cliente de Tibia&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="P2" value="&lt;b&gt;2. Validar enlaces&lt;/b&gt;&lt;br&gt;PING/PONG al VPS" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="330" y="70" width="170" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="D1" value="config.json&lt;br&gt;(secreto cifrado)" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=1;bottom=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="530" y="200" width="130" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="P3" value="&lt;b&gt;3. Túnel antilag&lt;/b&gt;&lt;br&gt;adaptador Wintun&lt;br&gt;cifra y duplica el juego" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="300" y="400" width="200" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="P4" value="&lt;b&gt;4. Vigilancia&lt;/b&gt;&lt;br&gt;enlaces nuevos, cambios de IP,&lt;br&gt;juego fuera del túnel" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="290" y="590" width="220" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="L1" value="Ethernet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="705" y="377" width="140" height="46" as="geometry"/>
+        </mxCell>
+        <mxCell id="L2" value="Wi-Fi / hotspot / USB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="705" y="477" width="140" height="46" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="E3" value="&lt;b&gt;Administrador del VPS&lt;/b&gt;&lt;br&gt;antilag clients add / remove" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="70" width="170" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="D2" value="clients.json&lt;br&gt;(jugadores y secretos)" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=1;bottom=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="890" y="200" width="150" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="P5" value="&lt;b&gt;5. Servidor antilag&lt;/b&gt;&lt;br&gt;una sesión por jugador&lt;br&gt;dedup + NAT (solo juego)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="930" y="395" width="200" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="D3" value="status.json&lt;br&gt;(quién está en línea)" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=1;right=0;top=1;bottom=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="590" width="140" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="E4" value="&lt;b&gt;Servidor del mundo&lt;/b&gt;&lt;br&gt;puertos 7171/7172" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1265" y="415" width="150" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="E5" value="&lt;b&gt;Login y web&lt;/b&gt;&lt;br&gt;www.tibia.com" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1265" y="700" width="150" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="f1" value="entra al mundo y&lt;br&gt;pulsa «Capturar»" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="E1" target="P1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f2" value="conexiones&lt;br&gt;a 7171/7172" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="E2" target="P1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f3" value="código de acceso, modo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="E1" target="P2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f4" value="guarda / lee" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;startArrow=classic;exitX=1;exitY=0.5;entryX=0.35;entryY=0;" edge="1" parent="1" source="P2" target="D1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f5" value="IPs del mundo (/32)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;exitX=1;exitY=0.5;entryX=0.25;entryY=0.07;" edge="1" parent="1" source="P1" target="P3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f6" value="enlaces válidos" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;exitX=0.5;exitY=1;entryX=0.62;entryY=0;" edge="1" parent="1" source="P2" target="P3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f7" value="paquetes del juego" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;startArrow=classic;strokeWidth=2;strokeColor=#2d6bd6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="E2" target="P3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f8" value="altas y cambios&lt;br&gt;de enlaces" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="P4" target="P3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f9" value="trama cifrada" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;startArrow=classic;strokeWidth=2;strokeColor=#2d6bd6;exitX=0.95;exitY=0.3;entryX=0;entryY=0.5;" edge="1" parent="1" source="P3" target="L1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f10" value="copia idéntica" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;startArrow=classic;strokeWidth=2;strokeColor=#2d6bd6;exitX=0.95;exitY=0.7;entryX=0;entryY=0.5;" edge="1" parent="1" source="P3" target="L2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f11" value="UDP 51888" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;startArrow=classic;strokeWidth=2;strokeColor=#2d6bd6;exitX=1;exitY=0.5;entryX=0.03;entryY=0.32;" edge="1" parent="1" source="L1" target="P5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f12" value="UDP 51888" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;startArrow=classic;strokeWidth=2;strokeColor=#2d6bd6;exitX=1;exitY=0.5;entryX=0.03;entryY=0.68;" edge="1" parent="1" source="L2" target="P5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f13" value="juego con la&lt;br&gt;IP fija del VPS" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;startArrow=classic;strokeWidth=2;strokeColor=#2d6bd6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="P5" target="E4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f14" value="jugadores y secretos" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;exitX=0.5;exitY=1;entryX=0.3;entryY=0.05;" edge="1" parent="1" source="D2" target="P5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f15" value="estado" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="P5" target="D3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f16" value="agrega / quita" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" edge="1" parent="1" source="E3" target="D2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f17" value="login HTTPS directo, con la IP de casa: no pasa por el VPS" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;labelBackgroundColor=#f8f9fb;dashed=1;startArrow=classic;strokeColor=#7a7a7a;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="E2" target="E5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="110" y="730"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

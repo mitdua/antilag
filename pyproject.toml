@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "antilag"
+version = "0.1.0"
+description = "Multi-link failover that keeps the game session alive"
+requires-python = ">=3.10"
+# Deliberately minimal: the VPS server and the core only need 'cryptography'.
+# Interfaces are queried with the system's own tools, which avoids binary
+# dependencies on Windows and on the VPS.
+dependencies = ["cryptography>=41"]
+
+[project.optional-dependencies]
+ui = ["flet>=1.0"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+antilag = "antilag.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["antilag*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

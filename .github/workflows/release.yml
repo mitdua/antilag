@@ -1,0 +1,58 @@
+# Builds antilag.exe and attaches it to a GitHub Release.
+#
+#   git tag v1.0.0 && git push origin v1.0.0   -> tests, build, release "v1.0.0" with antilag.exe
+#   Actions tab -> release -> Run workflow     -> tests and build only (the .exe is a run artifact)
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write  # create the release and upload the .exe
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install cryptography
+      # The network-namespace end-to-end tests skip themselves when the runner
+      # does not allow unprivileged user namespaces.
+      - run: python -m unittest discover -s tests -t .
+
+  build:
+    needs: test
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Version from the tag
+        id: version
+        shell: pwsh
+        run: |
+          $v = '${{ github.ref_name }}' -replace '^v', ''
+          if ($v -notmatch '^\d+\.\d+\.\d+$') { $v = '0.0.0' }
+          "value=$v" >> $env:GITHUB_OUTPUT
+      - name: Build antilag.exe
+        shell: pwsh
+        run: ./scripts/build_exe.ps1 -Version ${{ steps.version.outputs.value }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: antilag-exe
+          path: dist/antilag.exe
+      - name: Publish the release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/antilag.exe
+          generate_release_notes: true
